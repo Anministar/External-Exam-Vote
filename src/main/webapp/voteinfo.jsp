@@ -59,15 +59,32 @@ section td{
 			<%
 				VoteDao dao = new VoteDao();
 				List<VoteDto> list = dao.SelectAll();
-				System.out.println(list);
+				
+				SimpleDateFormat fmt1 = new SimpleDateFormat("yyyyMMdd");
+				SimpleDateFormat fmt2 = new SimpleDateFormat("yyyy년MM월dd일생");
+				
 				for(VoteDto dto : list) {
 					out.println("<tr>");
+					
 					out.println("<td>" + dto.getV_name() + "</td>");
-					out.println("<td>" + dto.getV_jumin() + "</td>");
+					
+					Date date = fmt1.parse("19" + dto.getV_jumin().substring(0,6));
+					out.println("<td>" + fmt2.format(date) + "</td>");
 					out.println("<td>" + dto.getV_jumin().substring(0,6) + "</td>");
-					out.println("<td>" + dto.getV_jumin().charAt(6) + "</td>");
+					
+					
+					
+					
+					//성별
+					int gender = dto.getV_jumin().charAt(6)-48;
+					if(gender==1) {
+						out.println("<td>남</td>");
+					} else if (gender==2) {
+						out.println("<td>여</td>");
+					}
 					out.println("<td>" + dto.getM_no() + "</td>");
-					out.println("<td>" + dto.getV_time() + "</td>");
+					
+					out.println("<td>" + dto.getV_time().substring(0, 2) +":" + dto.getV_time().substring(2) + "</td>");
 					out.println("<td>" + dto.getV_confirm() + "</td>");
 					out.println("</tr>");
 				}

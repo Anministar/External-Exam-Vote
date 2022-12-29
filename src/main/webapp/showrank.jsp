@@ -9,8 +9,6 @@
 <body>
 	<style>
 header {
-	background-color : black;
-	color : white;
 	text-align: center;
 	height: 50px;
 }
@@ -42,7 +40,31 @@ section td{
 			<li><a href="index.jsp">홈으로</a></li>
 		</ul>
 	</nav>
-	<section></section>
+	<section>
+		<h2>후보자등수</h2>
+		<table align="center">
+			<tr>
+				<td>후보번호</td>
+				<td>성명</td>
+				<td>총투표건수</td>
+			</tr>
+			<%@page import="Dao.*, Dto.*, java.util.*, java.text.*" %>
+			<%
+				RankDao dao = new RankDao();
+				List<RankDto> list = dao.SelectAll();
+				
+				for(RankDto dto : list) {
+					out.println("<tr>");
+					out.println("<td>" + dto.getM_no() + "</td>");
+					out.println("<td>" + dto.getM_name() + "</td>");
+					out.println("<td>" + dto.getSum_count() + "</td>");
+					out.println("</tr>");
+				}
+			
+			%>
+		</table>
+	
+	</section>
 	<footer> HRDKOREA Copyright@2016 ALL - </footer>
 
 
