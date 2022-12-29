@@ -1,0 +1,54 @@
+select member.m_no, m_name, count(vote.m_no) as sum_count
+from tbl_member_202005 member
+inner join tbl_vote_202005 vote
+on member.m_no=vote.m_no
+where V_confirm='Y'
+group by member.m_no, m_name
+order by count(vote.m_no) desc;
+
+-->insert값 잘못 넣었으니깐 pdf랑 확인하던지 다시 입력하길 바람.
+
+
+
+@@@ @@@
+java.sql.SQLSyntaxErrorException: ORA-00911: invalid character
+
+
+==> sql문의 ; 제거,  혹은 쉼표 이런거 제거해야함.
+
+
+@ vote table의 values 수정본 @
+--tbl_vote_202005
+
+create table tbl_vote_202005(
+   v_jumin char(13) not null primary key,
+   v_name varchar2(20),
+   m_no char(1),
+   v_time char(4),
+   v_area char(20),
+   v_confirm char(1));
+
+insert into tbl_vote_202005 values('99010110001','김유권','1','0930','제1투표장','N');
+insert into tbl_vote_202005 values('89010120002','이유권','2','0930','제1투표장','N');
+insert into tbl_vote_202005 values('69010110003','박유권','3','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('59010120004','홍유권','4','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('79010110005','조유권','5','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('89010120006','최유권','1','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('59010110007','지유권','1','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('49010120008','장유권','3','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('79010110009','정유권','3','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('89010120010','강유권','4','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('99010110011','신유권','5','0930','제1투표장','Y');
+insert into tbl_vote_202005 values('79010120012','오유권','1','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('69010110013','현유권','4','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('89010110014','왕유권','2','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('99010110015','유유권','3','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('79010110016','한유권','2','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('89010110017','문유권','4','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('99010110018','양유권','2','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('99010110019','구유권','4','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('79010110020','황유권','5','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('69010110021','배유권','3','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('79010110022','전유권','3','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('99010110023','고유권','1','1330','제2투표장','Y');
+insert into tbl_vote_202005 values('59010110024','권유권','3','1330','제2투표장','Y');
